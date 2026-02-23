@@ -100,7 +100,7 @@ dw_publish_chart(us_map)
 ## State by state maps 
 
 
-counties_states <- counties %>% filter(StateName == "Kansas" | StateName == "Indiana" | StateName == "Iowa" | StateName ==  "California" | StateName == "Nebraska" | StateName == "Arkansas" | StateName == "Missouri" | StateName == "New Mexico" | StateName == "Oklahoma" | StateName == "Mississippi" | StateName == "Maryland" | StateName == "Florida" | StateName == "Massachusetts" | StateName == "Louisiana" | StateName == "Pennsylvania" | StateName == "Wisconsin" | StateName == "Georgia" | StateName == "Kentucky" | StateName == "Ohio" | StateName == "Maine" | StateName == "New Hampshire" | StateName == "Vermont" | StateName == "New York" | StateName == "Alabama" | StateName == "North Carolina" | StateName == "South Carolina")
+counties_states <- counties %>% filter(StateName == "Delaware" | StateName == "New Jersey" | StateName == "Kansas" | StateName == "Indiana" | StateName == "Iowa" | StateName ==  "California" | StateName == "Nebraska" | StateName == "Arkansas" | StateName == "Missouri" | StateName == "New Mexico" | StateName == "Oklahoma" | StateName == "Mississippi" | StateName == "Maryland" | StateName == "Florida" | StateName == "Massachusetts" | StateName == "Louisiana" | StateName == "Pennsylvania" | StateName == "Wisconsin" | StateName == "Georgia" | StateName == "Kentucky" | StateName == "Ohio" | StateName == "Maine" | StateName == "New Hampshire" | StateName == "Vermont" | StateName == "New York" | StateName == "Alabama" | StateName == "North Carolina" | StateName == "South Carolina")
 
 dw_codes <- read_csv("datawrapper_codes.csv")
 
