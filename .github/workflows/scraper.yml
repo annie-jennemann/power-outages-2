@@ -72,5 +72,4 @@ jobs:
           CHART_CODE: ${{ secrets.CHART_CODE }}
           URL: ${{ secrets.URL }}
         run: |
-          . ~/.Renviron
           Rscript "scripts/power-outage-us-map.R"
