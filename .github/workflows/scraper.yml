@@ -57,10 +57,9 @@ jobs:
           echo 'R_LIBS_USER=~/Rlib' >> ~/.Renviron
           echo 'options(repos = c(CRAN = "https://cloud.r-project.org"))' >> ~/.Rprofile
 
-          # Make sure installs + library() calls use your cached library
-          Rscript -e '.libPaths("~/Rlib"); install.packages("tidyverse", dependencies = TRUE, lib="~/Rlib")'
-          Rscript -e '.libPaths("~/Rlib"); install.packages(c("jsonlite","remotes","magick","usethis","sf","units"), dependencies = TRUE, lib="~/Rlib")'
-          Rscript -e '.libPaths("~/Rlib"); remotes::install_github("munichrocker/DatawRappr", lib="~/Rlib", auth_token=Sys.getenv("GITHUB_PAT"))'
+          Rscript -e '.libPaths("~/Rlib"); install.packages(c("fs","usethis","jsonlite","remotes","magick","sf","units","tidyverse"), dependencies = TRUE, lib="~/Rlib", repos="https://cloud.r-project.org")'
+
+          Rscript -e '.libPaths("~/Rlib"); remotes::install_github("munichrocker/DatawRappr", dependencies = TRUE, upgrade = "never", lib="~/Rlib", auth_token=Sys.getenv("GITHUB_PAT"))'
 
       - name: Run R script
         env:
