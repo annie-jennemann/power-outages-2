@@ -10,6 +10,7 @@ on:
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  R_LIBS_USER: ~/Rlib
 
 jobs:
   run-r-script:
@@ -56,13 +57,15 @@ jobs:
         env:
           GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          mkdir -p ~/Rlib
-          echo 'R_LIBS_USER=~/Rlib' >> ~/.Renviron
-          echo 'options(repos = c(CRAN = "https://cloud.r-project.org"))' >> ~/.Rprofile
+          mkdir -p "$R_LIBS_USER"
 
-          Rscript -e '.libPaths("~/Rlib"); install.packages(c("fs","usethis","jsonlite","remotes","magick","sf","units","tidyverse"), dependencies = TRUE, lib="~/Rlib", repos="https://cloud.r-project.org")'
+          Rscript -e 'print(.libPaths())'
 
-          Rscript -e '.libPaths("~/Rlib"); remotes::install_github("munichrocker/DatawRappr", dependencies = TRUE, upgrade = "never", lib="~/Rlib", auth_token=Sys.getenv("GITHUB_PAT"))'
+          Rscript -e 'install.packages(c("fs","usethis","jsonlite","remotes","magick","sf","units","tidyverse"), dependencies = TRUE, lib=Sys.getenv("R_LIBS_USER"), repos="https://cloud.r-project.org")'
+
+          Rscript -e 'library(usethis, lib.loc=Sys.getenv("R_LIBS_USER"))'
+
+          Rscript -e 'remotes::install_github("munichrocker/DatawRappr", dependencies = TRUE, upgrade = "never", lib=Sys.getenv("R_LIBS_USER"), auth_token=Sys.getenv("GITHUB_PAT"))'
 
       - name: Run R script
         env:
