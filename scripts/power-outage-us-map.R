@@ -18,6 +18,7 @@ counties <- counties %>% inner_join(states, by="US_State_FIPS")
 
 counties <- counties %>% mutate(percent_out = CustomersOut/CustomersTracked*100)
 
+write_csv(counties, "power-outage-data.csv")
 
 ## current time
 
